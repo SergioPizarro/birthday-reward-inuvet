@@ -69,7 +69,7 @@ namespace :scheduler do
       puts "----------------------"
       puts "Today is: #{today}"
       birthday_today.each do |user|
-        # BirthdayMailer.birthday_greeting(user).deliver_now
+        BirthdayMailer.birthday_greeting(user).deliver_now
         puts "Sent birthday email to #{user[:email]}"
       end
       puts "----------------------"
