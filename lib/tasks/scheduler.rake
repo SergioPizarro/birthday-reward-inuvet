@@ -41,8 +41,8 @@ namespace :scheduler do
         next unless user["status"] == "ACTIVE"
         birthday_attr = user["custom_attributes"]&.find { |attr| attr["id"] == "date_of_birth" }
         next unless birthday_attr && birthday_attr["value"].present?
-        send_birthday_rewards_attr = user["custom_attributes"]&.find { |attr| attr["global_id"] == "17307786"}
-        next unless send_birthday_rewards_attr && send_birthday_rewards_attr["value"] == "Ja"
+        # send_birthday_rewards_attr = user["custom_attributes"]&.find { |attr| attr["global_id"] == "17307786"}
+        # next unless send_birthday_rewards_attr && Array(send_birthday_rewards_attr["value"]).include?("Ja")
         begin
           bday = Date.parse(birthday_attr["value"])
           if bday.month == today.month && bday.day == today.day
@@ -50,8 +50,8 @@ namespace :scheduler do
               email: user["email"],
               first_name: user["first_name"],
               last_name: user["last_name"],
-              birthday: birthday_attr["value"],
-              send_birthday_rewards: send_birthday_rewards_attr["value"]
+              birthday: birthday_attr["value"]
+              # send_birthday_rewards: send_birthday_rewards_attr["value"]
             }
           end
         rescue ArgumentError
